@@ -2,6 +2,8 @@ package com.oct_sky_out
 
 class Circle(radius : Int) {
     companion object {
+        // NOTE: const val을 사용하면 자바에서 public static final과 같은 접근제어를 띈다.
+        //        컴파일 시점에서 값이 초기화되므로 상수 목적으로 사용하기 좋음
         const val PI = 3.14
     }
 
