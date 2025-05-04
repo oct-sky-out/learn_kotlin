@@ -2,18 +2,10 @@ package com.oct_sky_out
 
 fun main() {
 
-    val lazyConfig = LazyInitialization()
-    // NOTE : lazy 모드에는 총 2가지가 존재하며, 기본은 SYNCHRONIZED 모드이다.
+    val hero = Hero("kotlin", level = 1)
 
-    // NOTE : 첫 사용 접근시 초기화. 따라서 lazyConfig.config map을 처음 초기화 할 때 내부의 print문이 동작.
-    println("this is main scope : ${lazyConfig.config["baseUrl"]}")
-
-    // NOTE : 두번째 사용시에는 리소스를 재로드하지않음. 캐싱된 값을 사용.
-    println("this is main scope : ${lazyConfig.config["apiKey"]}")
-
-    // NOTE : PUBLICATION 모드로 동작하는 config
-    println("this is main scope : ${lazyConfig.publicationConfig["baseUrl"]}")
-
-    // NOTE : 두번째 사용시에는 리소스를 재로드하지않음. 캐싱된 값을 사용.
-    println("this is main scope : ${lazyConfig.publicationConfig["apiKey"]}")
+    // TODO : 히어로의 이름과 레벨을 변경해보세요.
+    //      밸리데이션의 정의대로 올바르지않다면, 에러가 발생합니다.
+    hero.name = "hero"
+    hero.level = 2
 }
