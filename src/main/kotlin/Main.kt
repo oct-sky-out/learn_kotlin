@@ -27,7 +27,6 @@ fun main() {
         yieldAll(generateSequence {  Random.nextInt(1, 100) })
     }
     .take(n)
-    print(xsForRandom.toList())
     println(sum(xsForRandom.toList())) // ランダム足し算
     // TODO 4. 上に作成した通り、ランダム数を掛け算する機能も具現してください。
 //  println(...)
