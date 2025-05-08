@@ -37,6 +37,11 @@ class Stream() {
 
             return forEach(func, tail(stream) as Pair<T, () -> T>?)
         }
+
+        fun <T> printStream(stream : Pair<T, () -> T>?) {
+            // TODO 5 :각 스트림 요소를 화면에 출력하는 로직을 31번째에 선언한 forEach를 통해 구현해주세요.
+            forEach(...)
+        }
     }
 
     fun integers(start : Int, end : Int): Pair<Int, () -> Int>? {
