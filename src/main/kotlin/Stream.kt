@@ -77,4 +77,18 @@ class Stream() {
         // TODO 1 : Iterable xs 수열을 받아 n개만큼 추출하여 List로 반환하세요.
         return ...
     }
+
+    fun fibonacciNumbers() : Sequence<Int> {
+        var a = 0
+        var b = 1
+
+        return sequence {
+            while (true) {
+                yield(a)
+                // TODO 2 : 피보나치 수열 로직을 완성시켜주세요
+                ...
+            }
+        }
+
+    }
 }

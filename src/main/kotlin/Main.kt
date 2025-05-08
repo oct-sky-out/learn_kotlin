@@ -18,4 +18,7 @@ fun main() {
     println("-------------------------------------------------------")
     val intIterable2 = Stream().integersFrom(1).asIterable()
     println(Stream().take(10, intIterable2))
+    println("-------------------------------------------------------")
+
+    print(Stream().take(10, Stream().fibonacciNumbers().asIterable()))
 }
