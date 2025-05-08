@@ -27,6 +27,16 @@ class Stream() {
             // TODO 2 : tail 함수를 구현해주세요.
             return ...
         }
+
+        fun <T> forEach(func : (arg : T) -> Unit, stream : Pair<T, () -> T >?) {
+            when(stream) {
+                null -> return
+                // TODO 4 : forEach의 ...에 해당하는 로직을 구현해주세요.
+                else -> ...
+            }
+
+            return forEach(func, tail(stream) as Pair<T, () -> T>?)
+        }
     }
 
     fun integers(start : Int, end : Int): Pair<Int, () -> Int>? {
