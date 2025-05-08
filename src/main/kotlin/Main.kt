@@ -23,8 +23,10 @@ fun main() {
 
     // random 더하기.
     val n = 20
-    val xsForRandom = generateSequence(1) { if (it > n) null else Random.nextInt(100) }
+    val xsForRandom = sequence {
+        yieldAll(generateSequence {  Random.nextInt(1, 100) })
+    }
+    .take(n)
     println(sum(xsForRandom.toList())) // 무작위 더하기
-    // TODO 4. 위에서 작성한대로 무작위 숫자를 곱하는 것도 구현해보세요.
 //  println(...)
 }
