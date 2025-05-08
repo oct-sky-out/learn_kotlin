@@ -38,6 +38,12 @@ class Stream() {
         fun <T> printStream(stream : Pair<T, () -> T>?) {
             forEach({println(it)}, stream)
         }
+
+        fun <T> printIterator(xs : Iterator<T>) {
+            for(x in xs) {
+                print("$x ")
+            }
+        }
     }
 
     fun integers(start : Int, end : Int): Pair<Int, () -> Int>? {
