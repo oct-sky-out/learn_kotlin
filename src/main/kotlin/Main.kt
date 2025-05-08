@@ -6,7 +6,7 @@ fun main() {
 
     Stream().integersFrom(1)
 
-    val range10 : IntRange = 1..10
+    val range10: IntRange = 1..10
     println(range10.iterator())
 
     Stream.printIterator(range10.iterator())
@@ -23,14 +23,23 @@ fun main() {
     println(Stream().take(10, Stream().fibonacciNumbers().asIterable()))
     println("-------------------------------------------------------")
 
-    val infiniteIterable =  Stream().integersFrom(1).asIterable()
+    val infiniteIterable = Stream().integersFrom(1).asIterable()
     Stream.printIterator(
         Stream()
             .take(10, Stream().filter(Stream::isEven, infiniteIterable).asIterable())
-            .iterator())
+            .iterator()
+    )
     println("-------------------------------------------------------")
 
     val summarize = Summarize()
     println(Stream().index(11, summarize.sum(Stream().integersFrom(1)).asIterable()))
+    println("-------------------------------------------------------")
+
+    // Stackoverflow 에러가 발생하지않고, 무한한 출력이 나옵니다.
+    Stream.printIterator(
+        Stream().map(
+            { it + 1 }, Stream().integersFrom(1).asIterable()
+        ).iterator()
+    )
     println("-------------------------------------------------------")
 }

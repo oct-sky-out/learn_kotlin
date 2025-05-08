@@ -109,4 +109,8 @@ class Stream() {
         ...
     }
 
+    fun <T, U> map(fn: (arg : T) -> U, xs : Iterable<T> ) : Sequence<U> {
+        // TODO 6 : map을 구현해보세요.
+        ...
+    }
 }
