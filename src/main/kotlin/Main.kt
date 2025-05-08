@@ -14,4 +14,8 @@ fun main() {
 
     val intIterable = Stream().integersFrom(1).asIterable()
     Stream.printIterator(Stream().finite(100, intIterable).iterator())
+
+    println("-------------------------------------------------------")
+    val intIterable2 = Stream().integersFrom(1).asIterable()
+    println(Stream().take(10, intIterable2))
 }

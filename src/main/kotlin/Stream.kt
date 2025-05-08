@@ -43,6 +43,7 @@ class Stream() {
             for(x in xs) {
                 print("$x ")
             }
+            println()
         }
     }
 
@@ -70,5 +71,10 @@ class Stream() {
                 yield(iter.next())
             }
         }
+    }
+
+    fun take(n : Int, xs: Iterable<Int>) : List<Int> {
+        // TODO 1 : Iterable xs 수열을 받아 n개만큼 추출하여 List로 반환하세요.
+        return ...
     }
 }
