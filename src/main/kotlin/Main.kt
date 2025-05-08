@@ -20,5 +20,6 @@ fun main() {
     println(Stream().take(10, intIterable2))
     println("-------------------------------------------------------")
 
-    print(Stream().take(10, Stream().fibonacciNumbers().asIterable()))
+    println(Stream().take(10, Stream().fibonacciNumbers().asIterable()))
+    println("-------------------------------------------------------")
 }
