@@ -62,4 +62,13 @@ class Stream() {
             }
         }
     }
+
+    fun finite(n : Int, xs: Iterable<Int>) : Sequence<Int> {
+        val iter = xs.iterator()
+        return sequence {
+            for (_i in 0 .. n-1) {
+                yield(iter.next())
+            }
+        }
+    }
 }
