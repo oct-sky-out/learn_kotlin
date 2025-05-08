@@ -28,4 +28,11 @@ class Stream() {
             return ...
         }
     }
+
+    fun integers(start : Int, end : Int): Pair<Int, () -> Int>? {
+        if ( start > end ) return EMPTY_STREAM
+
+        // TODO 3 : ...에 들어갈 로직을 구연해 integers 메서드를 완성하세요.
+        return streamOf(start, ...) as Pair<Int, () -> Int>?
+    }
 }
