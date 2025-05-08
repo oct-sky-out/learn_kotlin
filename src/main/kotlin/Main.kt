@@ -10,21 +10,25 @@ fun main() {
         summarize.fold(identity = 0, glue = { x, y -> x + y }, xs)
     }
 
-    // TODO 1 : sum 으로 문제1. a에서 b까지 정수를 모두 더하는 함수 `sumIntegers = ...`를 구현하세요.
+    // TODO 1 : sumで問題１番である aからbまで全ての定数を足す関数 sumIntegersを作成してください。
 //    val sumIntegers = ...
-//    println(sumIntegers(1, 10)) // 결과는 55가 나와야함.
+//    println(sumIntegers(1, 10)) // 55
 
-    // TODO 2 : fold를 이용하여 순열 xs의 모든 수를 곱하는 함수 product를 구현하세요.
+    // TODO 2 : foldを利用し、順列　xsのすべての数を掛け算する　product関数を作成してください。
 //    val product = ...
 
-    // TODO 3 : product를 이용하여 문제2. a에서 b까지 정수를 모두 곱하는 함수 productIntegers를 구현하세요.
+    // TODO 3 : productを利用し、問題2番である aから bまでの数を掛け算するproductIntegers関数を作成してください。
 //    val productIntegers = ...
-//    println(productIntegers(1, 10)) // 결과는 3628800가 나와야함.
+//    println(productIntegers(1, 10)) // 3628800
 
-    // random 더하기.
+    // random　
     val n = 20
-    val xsForRandom = generateSequence(1) { if (it > n) null else Random.nextInt(100) }
+    val xsForRandom = sequence {
+        yieldAll(generateSequence {  Random.nextInt(1, 100) })
+    }
+    .take(20)
+    print(xsForRandom.toList())
     println(sum(xsForRandom.toList())) // 무작위 더하기
-    // TODO 4. 위에서 작성한대로 무작위 숫자를 곱하는 것도 구현해보세요.
+    // TODO 4. 上に作成した通り、ランダム数を掛け算する機能も具現してください。
 //  println(...)
 }
