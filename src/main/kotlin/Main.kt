@@ -22,4 +22,11 @@ fun main() {
 
     println(Stream().take(10, Stream().fibonacciNumbers().asIterable()))
     println("-------------------------------------------------------")
+
+    val infiniteIterable =  Stream().integersFrom(1).asIterable()
+    Stream.printIterator(
+        Stream()
+            .take(10, Stream().filter(Stream::isEven, infiniteIterable).asIterable())
+            .iterator())
+    println("-------------------------------------------------------")
 }
