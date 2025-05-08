@@ -9,8 +9,7 @@ class Stream() {
         }
 
         fun <T> force(v : () -> T) : T {
-            // TODO 1 : v 함수를 계산(evaluation)하는 코드를 작성하세요.
-            return ...
+            return v()
         }
 
         fun <T> streamOf(x : T, y : T): Pair<T, () -> T> {
@@ -24,30 +23,37 @@ class Stream() {
 
         fun <T> tail(stream : Pair<*, () -> T>) : T {
             val (_, xs) = stream
-            // TODO 2 : tail 함수를 구현해주세요.
-            return ...
+            return force(xs)
         }
 
         fun <T> forEach(func : (arg : T) -> Unit, stream : Pair<T, () -> T >?) {
             when(stream) {
                 null -> return
-                // TODO 4 : forEach의 ...에 해당하는 로직을 구현해주세요.
-                else -> ...
+                else -> func(head(stream))
             }
 
             return forEach(func, tail(stream) as Pair<T, () -> T>?)
         }
 
         fun <T> printStream(stream : Pair<T, () -> T>?) {
-            // TODO 5 :각 스트림 요소를 화면에 출력하는 로직을 31번째에 선언한 forEach를 통해 구현해주세요.
-            forEach(...)
+            forEach({println(it)}, stream)
         }
     }
 
     fun integers(start : Int, end : Int): Pair<Int, () -> Int>? {
         if ( start > end ) return EMPTY_STREAM
 
-        // TODO 3 : ...에 들어갈 로직을 구연해 integers 메서드를 완성하세요.
-        return streamOf(start, ...) as Pair<Int, () -> Int>?
+        return streamOf(start, integers(start + 1, end)) as Pair<Int, () -> Int>?
+    }
+
+    fun integersFrom(n : Int): Sequence<Int> {
+        var number = n
+
+        return sequence {
+            while (true) {
+                yield(number)
+                number++
+            }
+        }
     }
 }
