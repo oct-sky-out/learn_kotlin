@@ -26,9 +26,9 @@ fun main() {
     val xsForRandom = sequence {
         yieldAll(generateSequence {  Random.nextInt(1, 100) })
     }
-    .take(20)
+    .take(n)
     print(xsForRandom.toList())
-    println(sum(xsForRandom.toList())) // 무작위 더하기
+    println(sum(xsForRandom.toList())) // ランダム足し算
     // TODO 4. 上に作成した通り、ランダム数を掛け算する機能も具現してください。
 //  println(...)
 }
