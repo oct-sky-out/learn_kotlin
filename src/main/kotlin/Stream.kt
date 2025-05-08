@@ -46,11 +46,11 @@ class Stream() {
             println()
         }
 
-        fun isDivisible(x : Int, y : Int) : Boolean {
+        fun isDivisible(x: Int, y: Int): Boolean {
             return x % y == 0
         }
 
-        fun isEven(x : Int) : Boolean {
+        fun isEven(x: Int): Boolean {
             return isDivisible(x, 2)
         }
     }
@@ -103,4 +103,10 @@ class Stream() {
         // TODO 3. filter를 작성하여 isTrueFn 콜백을 실행하여 true만 분류하여주새요.
         ...
     }
+
+    fun index(n : Int, xs : Iterable<Int>) : Int {
+        // TODO 5 : xs순열 가운데에 n번째 요소만 뽑아 추출하는 로직을 작성해주세요.
+        ...
+    }
+
 }

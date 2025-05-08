@@ -29,4 +29,8 @@ fun main() {
             .take(10, Stream().filter(Stream::isEven, infiniteIterable).asIterable())
             .iterator())
     println("-------------------------------------------------------")
+
+    val summarize = Summarize()
+    println(Stream().index(11, summarize.sum(Stream().integersFrom(1)).asIterable()))
+    println("-------------------------------------------------------")
 }
