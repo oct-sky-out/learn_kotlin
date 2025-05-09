@@ -1,5 +1,10 @@
 package com.oct_sky_out
 
+import org.jetbrains.kotlinx.kandy.dsl.plot
+import org.jetbrains.kotlinx.kandy.letsplot.export.save
+import org.jetbrains.kotlinx.kandy.letsplot.feature.layout
+import org.jetbrains.kotlinx.statistics.binning.BinsOption
+import org.jetbrains.kotlinx.statistics.kandy.layers.histogram
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -52,4 +57,49 @@ fun main() {
     // 0.9874854198274012 0.9344148667915987 0.7407875139712149 0.10191377932250689
     // 0.6971485869167979 0.5590359690310672 0.09550175590153209 0.5551235961814939 0.26712745618464484 0.45436587136583917
     println("-------------------------------------------------------")
+    val simulator = HerbSimulation()
+
+    val herbQualities =
+        Stream.map(
+            fn = {
+                simulator.guessQuality(
+                    HerbSimulation.discreteUniformDistribution(
+                        HerbSimulation.HerbQuality.Excellent.quality,
+                        HerbSimulation.HerbQuality.Poor.quality
+                    )
+                )(it)
+            },
+            xs = HerbSimulation.herbAvailabilities
+        )
+
+    val pairs = listOf(
+        Pair(90.0, 10.0),
+        Pair(80.0, 20.0),
+        Pair(50.0, 30.0),
+        Pair(30.0, 40.0),
+    )
+    val effectDistributionByQuality = pairs.map {
+        HerbSimulation.normalDistribution(it.first, it.second)
+    }
+
+    val guessEffectFrom : (HerbSimulation.HerbQuality) -> Double = {
+        // TODO 1 : 약초의 품질에 따른 무작위 약물 효과를 guss에 넣어주세요
+        val guess = ...
+
+        if(guess < 0.0) 0.0
+        else if(guess > 100.0) 100.0
+        else guess
+    }
+
+    val effect = Stream.map(guessEffectFrom, herbQualities)
+
+    val numberOfTrials = 7000
+    val neffect = Stream.take(numberOfTrials, effect)
+
+    plot {
+        histogram(neffect, binsOption = BinsOption.byNumber(10))
+        layout.title = "Monte carlo Herb Simulation"
+        layout.xAxisLabel = "Potion effect"
+        layout.yAxisLabel = "# Sample"
+    }.save("Monte carlo Herb Simulation.png")
 }

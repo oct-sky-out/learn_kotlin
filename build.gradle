@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kandy-lets-plot:0.8.0'
     implementation 'org.jetbrains.kotlinx:kotlin-statistics-jvm:0.4.0'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
+    implementation "org.apache.commons:commons-math:2.2"
 }
 
 test {
