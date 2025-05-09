@@ -73,7 +73,7 @@ class Stream() {
             }
         }
 
-        fun index(n : Int, xs : Sequence<Int>) : Int {
+        inline fun <reified T> index(n : Int, xs : Sequence<T>) : T {
             return take(n, xs).last()
         }
 

@@ -1,6 +1,9 @@
 package com.oct_sky_out
 
+import kotlin.math.sqrt
 import kotlin.random.Random
+
+const val ZERO = 0.0
 
 fun main() {
     Stream.printStream(Stream().integers(1, 5))
@@ -38,7 +41,11 @@ fun main() {
 //    Stream.printIterator(Stream().map({ it + 1 }, Stream().integersFrom(1)).iterator())
 //    println("-------------------------------------------------------")
 
-    println(quessPi(1_000_000))
+    val pi = Stream.map(
+        { if(it == ZERO) ZERO else sqrt(6 / it) },
+        montecarlo { dirichletTest()}
+    )
+    println(Stream.index(100_000, pi))
     println("-------------------------------------------------------")
 
     Stream.printIterator(Stream.take(10, Stream.repeat { Random.nextDouble(1.0) }).iterator())
