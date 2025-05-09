@@ -53,6 +53,38 @@ class Stream() {
         fun isEven(x: Int): Boolean {
             return isDivisible(x, 2)
         }
+
+        fun take(n: Int, xs: Sequence<Int>): List<Int> {
+            val iter = xs.iterator()
+            val arr = Array(n) { iter.next() }
+
+            return arr.toList()
+        }
+
+        fun <T> filter(isTrueFn: Function1<T, Boolean>, xs: Sequence<T>): Sequence<T> {
+            val iter = xs.iterator()
+            return sequence {
+                while (iter.hasNext()) {
+                    val value = iter.next()
+                    if (isTrueFn.invoke(value)) {
+                        yield(value)
+                    }
+                }
+            }
+        }
+
+        fun index(n : Int, xs : Sequence<Int>) : Int {
+            return take(n, xs).last()
+        }
+
+        fun <T, U> map(fn: (arg : T) -> U, xs : Sequence<T> ) : Sequence<U> {
+            val iter = xs.iterator()
+
+            return sequence {
+                while (iter.hasNext())
+                    yield(fn(iter.next()))
+            }
+        }
     }
 
     fun integers(start: Int, end: Int): Pair<Int, () -> Int>? {
@@ -81,13 +113,6 @@ class Stream() {
         }
     }
 
-    fun take(n: Int, xs: Sequence<Int>): List<Int> {
-        val iter = xs.iterator()
-        val arr = Array(n) { iter.next() }
-
-        return arr.toList()
-    }
-
     fun fibonacciNumbers(): Sequence<Int> {
         var a = 0
         var b = 1
@@ -99,31 +124,6 @@ class Stream() {
                 a = b
                 b += tempA
             }
-        }
-    }
-
-    fun <T> filter(isTrueFn: Function1<T, Boolean>, xs: Sequence<T>): Sequence<T> {
-        val iter = xs.iterator()
-        return sequence {
-            while (iter.hasNext()) {
-                val value = iter.next()
-                if (isTrueFn.invoke(value)) {
-                    yield(value)
-                }
-            }
-        }
-    }
-
-    fun index(n : Int, xs : Sequence<Int>) : Int {
-        return this.take(n, xs).last()
-    }
-
-    fun <T, U> map(fn: (arg : T) -> U, xs : Sequence<T> ) : Sequence<U> {
-        val iter = xs.iterator()
-
-        return sequence {
-            while (iter.hasNext())
-                yield(fn(iter.next()))
         }
     }
 }
