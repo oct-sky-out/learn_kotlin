@@ -6,8 +6,15 @@ class Summarize {
         glue: (result: Int, x: Int) -> Int,
         xs: Sequence<Int>
     ): Sequence<Int> {
-        // TODO 4 : fold를 iterator pattern(Iterable Protocol)에 맞게 재구성해보세요.
-        ...
+        val iter = xs.iterator()
+        var result = identity
+
+        return sequence {
+            while (iter.hasNext()) {
+                result = glue(result, iter.next())
+                yield(result)
+            }
+        }
     }
 
     fun sum(xs: Sequence<Int>): Sequence<Int> {

@@ -72,7 +72,7 @@ class Stream() {
         }
     }
 
-    fun finite(n: Int, xs: Iterable<Int>): Sequence<Int> {
+    fun finite(n: Int, xs: Sequence<Int>): Sequence<Int> {
         val iter = xs.iterator()
         return sequence {
             for (_i in 0..n - 1) {
@@ -81,9 +81,11 @@ class Stream() {
         }
     }
 
-    fun take(n : Int, xs: Iterable<Int>) : List<Int> {
-        // TODO 1 : Iterable xs 수열을 받아 n개만큼 추출하여 List로 반환하세요.
-        return ...
+    fun take(n: Int, xs: Sequence<Int>): List<Int> {
+        val iter = xs.iterator()
+        val arr = Array(n) { iter.next() }
+
+        return arr.toList()
     }
 
     fun fibonacciNumbers(): Sequence<Int> {
@@ -93,24 +95,35 @@ class Stream() {
         return sequence {
             while (true) {
                 yield(a)
-                // TODO 2 : 피보나치 수열 로직을 완성시켜주세요
-                ...
+                val tempA = a
+                a = b
+                b += tempA
             }
         }
     }
 
-    fun <T> filter(isTrueFn: Function1<T ,Boolean>, xs: Iterable<T>): Sequence<T> {
-        // TODO 3. filter를 작성하여 isTrueFn 콜백을 실행하여 true만 분류하여주새요.
-        ...
+    fun <T> filter(isTrueFn: Function1<T, Boolean>, xs: Sequence<T>): Sequence<T> {
+        val iter = xs.iterator()
+        return sequence {
+            while (iter.hasNext()) {
+                val value = iter.next()
+                if (isTrueFn.invoke(value)) {
+                    yield(value)
+                }
+            }
+        }
     }
 
-    fun index(n : Int, xs : Iterable<Int>) : Int {
-        // TODO 5 : xs순열 가운데에 n번째 요소만 뽑아 추출하는 로직을 작성해주세요.
-        ...
+    fun index(n : Int, xs : Sequence<Int>) : Int {
+        return this.take(n, xs).last()
     }
 
-    fun <T, U> map(fn: (arg : T) -> U, xs : Iterable<T> ) : Sequence<U> {
-        // TODO 6 : map을 구현해보세요.
-        ...
+    fun <T, U> map(fn: (arg : T) -> U, xs : Sequence<T> ) : Sequence<U> {
+        val iter = xs.iterator()
+
+        return sequence {
+            while (iter.hasNext())
+                yield(fn(iter.next()))
+        }
     }
 }
