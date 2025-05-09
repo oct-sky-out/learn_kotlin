@@ -1,5 +1,7 @@
 package com.oct_sky_out
 
+import kotlin.random.Random
+
 fun main() {
     Stream.printStream(Stream().integers(1, 5))
     println("-------------------------------------------------------")
@@ -36,5 +38,11 @@ fun main() {
 //    Stream.printIterator(Stream().map({ it + 1 }, Stream().integersFrom(1)).iterator())
 //    println("-------------------------------------------------------")
 
-    print(quessPi(1_000_000))
+    println(quessPi(1_000_000))
+    println("-------------------------------------------------------")
+
+    Stream.printIterator(Stream.take(10, Stream.repeat { Random.nextDouble(1.0) }).iterator())
+    // 0.9874854198274012 0.9344148667915987 0.7407875139712149 0.10191377932250689
+    // 0.6971485869167979 0.5590359690310672 0.09550175590153209 0.5551235961814939 0.26712745618464484 0.45436587136583917
+    println("-------------------------------------------------------")
 }

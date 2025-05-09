@@ -54,7 +54,7 @@ class Stream() {
             return isDivisible(x, 2)
         }
 
-        fun take(n: Int, xs: Sequence<Int>): List<Int> {
+        inline fun <reified T> take(n: Int, xs: Sequence<T>): List<T> {
             val iter = xs.iterator()
             val arr = Array(n) { iter.next() }
 
@@ -84,6 +84,11 @@ class Stream() {
                 while (iter.hasNext())
                     yield(fn(iter.next()))
             }
+        }
+
+        fun <T> repeat(fn : () -> T) : Sequence<T>{
+            // TODO 1 : iterator를 이용하여 인자로 받은 fn의 결과값을 지속적으로 받을 수 있게끔 구현하세요.
+            ...
         }
     }
 
