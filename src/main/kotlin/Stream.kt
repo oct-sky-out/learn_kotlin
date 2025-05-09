@@ -86,9 +86,12 @@ class Stream() {
             }
         }
 
-        fun <T> repeat(fn : () -> T) : Sequence<T>{
-            // TODO 1 : iterator를 이용하여 인자로 받은 fn의 결과값을 지속적으로 받을 수 있게끔 구현하세요.
-            ...
+        fun <T> repeat(fn : () -> T) : Sequence<T> {
+            return sequence {
+                while (true) {
+                    yield(fn())
+                }
+            }
         }
     }
 
