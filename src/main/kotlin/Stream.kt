@@ -73,11 +73,11 @@ class Stream() {
             }
         }
 
-        inline fun <reified T> index(n : Int, xs : Sequence<T>) : T {
+        inline fun <reified T> index(n: Int, xs: Sequence<T>): T {
             return take(n, xs).last()
         }
 
-        fun <T, U> map(fn: (arg : T) -> U, xs : Sequence<T> ) : Sequence<U> {
+        fun <T, U> map(fn: (arg: T) -> U, xs: Sequence<T>): Sequence<U> {
             val iter = xs.iterator()
 
             return sequence {
@@ -86,7 +86,7 @@ class Stream() {
             }
         }
 
-        fun <T> repeat(fn : () -> T) : Sequence<T> {
+        fun <T> repeat(fn: () -> T): Sequence<T> {
             return sequence {
                 while (true) {
                     yield(fn())

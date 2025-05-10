@@ -18,6 +18,6 @@ class Summarize {
     }
 
     fun sum(xs: Sequence<Int>): Sequence<Int> {
-        return fold(0, {x, y -> x + y }, xs)
+        return fold(0, { x, y -> x + y }, xs)
     }
 }

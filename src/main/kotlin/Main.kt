@@ -23,7 +23,8 @@ fun main() {
     println("-------------------------------------------------------")
 
     Stream.printIterator(
-        Stream().finite(100, Stream().integersFrom(1)).iterator())
+        Stream().finite(100, Stream().integersFrom(1)).iterator()
+    )
 
     println("-------------------------------------------------------")
     println(Stream.take(10, Stream().integersFrom(1)))
@@ -47,8 +48,8 @@ fun main() {
 //    println("-------------------------------------------------------")
 
     val pi = Stream.map(
-        { if(it == ZERO) ZERO else sqrt(6 / it) },
-        montecarlo { dirichletTest()}
+        { if (it == ZERO) ZERO else sqrt(6 / it) },
+        monteCarlo { dirichletTest() }
     )
     println(Stream.index(100_000, pi))
     println("-------------------------------------------------------")
@@ -82,12 +83,11 @@ fun main() {
         HerbSimulation.normalDistribution(it.first, it.second)
     }
 
-    val guessEffectFrom : (HerbSimulation.HerbQuality) -> Double = {
-        // TODO 1 : 약초의 품질에 따른 무작위 약물 효과를 guss에 넣어주세요
-        val guess = ...
+    val guessEffectFrom: (HerbSimulation.HerbQuality) -> Double = {
+        val guess = Stream.index(1, effectDistributionByQuality[it.quality])
 
-        if(guess < 0.0) 0.0
-        else if(guess > 100.0) 100.0
+        if (guess < 0.0) 0.0
+        else if (guess > 100.0) 100.0
         else guess
     }
 
